@@ -1,5 +1,4 @@
 // Required Header Files for MessagesQueue/POSIXQueue
-
 #include <iostream>
 #include <mqueue.h>
 #include <stdlib.h>
@@ -11,6 +10,7 @@
 #include <sys/stat.h>
 #include <chrono>
 
+using namespace std;
 
 // Global Queue Definitions for Queue Descriptor
 
@@ -47,7 +47,27 @@ int main(int argc, char *argv[])
 
     memset(buf, '\0', sizeof(buf)); // Allocate/Set Memorty for Buffer
 
-    // Create aand Open a Queue with set attritbutes
+    /*
+
+    // Reading From File
+
+    FILE *file;
+
+    file = fopen("test.txt", "r");
+    if (file == NULL)
+        return 1;
+
+    //fseek(file, 0L, SEEK_END);
+    //numbytes = ftell(file);
+    //fseek(file, 0L, SEEK_SET);
+
+    //fread(buf, sizeof(char), numbytes, file);
+
+    printf("The file called test.dat contains this text\n\n%s", buf);
+
+    /// ----------------- /// */
+
+    // Create and Open a Queue with set attritbutes
 
     mqdes = mq_open(QUEUE_NAME, O_CREAT | O_RDWR | O_NONBLOCK, QUEUE_PERMISSIONS, &attr);
 
@@ -64,6 +84,14 @@ int main(int argc, char *argv[])
     {
 
         std::cin.getline(buf, sizeof(buf)); // Get User Input into the Buffer
+        /*
+
+       
+        fseek(file, 0L, SEEK_END);
+        numbytes = ftell(file);
+        fseek(file, 0L, SEEK_SET);
+
+        fread(buf, sizeof(char), numbytes, file); */
         if (!strcmp(buf, "exit"))
         {
 
@@ -87,7 +115,7 @@ int main(int argc, char *argv[])
     }
 
     // Close Queue
-
+    //fclose(file);
     mq_close(mqdes);
     return 0;
 }

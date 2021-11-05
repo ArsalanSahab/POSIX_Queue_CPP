@@ -2,6 +2,7 @@ clean_compile : posix_publisher.cpp posix_consumer.cpp
 
 		echo "Cleaning Directory.."
 		rm -f *.o posix_consumer posix_publisher
+		
 		echo "Done.."
 
 		echo "Compiling..."

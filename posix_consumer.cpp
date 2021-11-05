@@ -11,12 +11,11 @@
 #include <sys/stat.h>
 #include <chrono>
 
-
 // Global Queue Definitions for Queue Descriptor
 
 #define QUEUE_NAME "/tps-queue"         // Name of our Queue
 #define QUEUE_PERMISSIONS ((int)(0644)) // Permissions the Queue will have
-#define QUEUE_NUM_MSG 10                // Max Number of Messages Allowed in the Queue
+#define QUEUE_NUM_MSG 20                // Max Number of Messages Allowed in the Queue
 #define QUEUE_MSG_SIZE 1024             // Max Message Size
 #define QUEUE_ATTRIBUTES_INITIALISER ((struct mq_attr){0, QUEUE_NUM_MSG, QUEUE_MSG_SIZE, 0, {0}})
 
